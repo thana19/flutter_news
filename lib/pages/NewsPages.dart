@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
+import 'package:intl/intl.dart';
+
 class NewsPages extends StatefulWidget {
   const NewsPages({Key? key}) : super(key: key);
 
@@ -49,14 +51,30 @@ class _NewsPagesState extends State<NewsPages> {
       ),
       body:
         ListView.separated(itemBuilder: (BuildContext context, int index){
-           return ListTile (
-             leading: SizedBox(
-               height: 100,
-                width: 100,
-                child: Image.network(articles[index]['urlToImage'],fit: BoxFit.cover)
-             ),
-             title: Text(articles[index]['title']),
-             subtitle: Text(articles[index]['source']['name']),
+           return Card (
+             child: Column(
+               crossAxisAlignment: CrossAxisAlignment.start,
+               children: [
+                 SizedBox(
+                     // height: 150,
+                     child: Image.network(articles[index]['urlToImage'],fit: BoxFit.cover)
+                 ),
+                 Padding(
+                   padding: EdgeInsets.fromLTRB(16, 5, 10, 5),
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     children: [
+                       Text(articles[index]['source']['name']),
+                       Text(DateFormat.yMMMd().format(DateTime.parse(articles[index]['publishedAt'])))
+                     ],
+                   )
+                 ),
+                 Padding(
+                   padding: EdgeInsets.fromLTRB(16, 5, 10, 10),
+                   child:  Text(articles[index]['title']),
+                 ),
+               ],
+             )
            );
         },
           separatorBuilder: (BuildContext context, int index) => const Divider(),
