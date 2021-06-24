@@ -52,28 +52,33 @@ class _NewsPagesState extends State<NewsPages> {
       body:
         ListView.separated(itemBuilder: (BuildContext context, int index){
            return Card (
-             child: Column(
-               crossAxisAlignment: CrossAxisAlignment.start,
-               children: [
-                 SizedBox(
+             child: InkWell (
+               onTap: () {
+                 print('tap');
+               },
+               child: Column(
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: [
+                   SizedBox(
                      // height: 150,
-                     child: Image.network(articles[index]['urlToImage'],fit: BoxFit.cover)
-                 ),
-                 Padding(
-                   padding: EdgeInsets.fromLTRB(16, 5, 10, 5),
-                   child: Row(
-                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                     children: [
-                       Text(articles[index]['source']['name']),
-                       Text(DateFormat.yMMMd().format(DateTime.parse(articles[index]['publishedAt'])))
-                     ],
-                   )
-                 ),
-                 Padding(
-                   padding: EdgeInsets.fromLTRB(16, 5, 10, 10),
-                   child:  Text(articles[index]['title']),
-                 ),
-               ],
+                       child: Image.network(articles[index]['urlToImage'],fit: BoxFit.cover)
+                   ),
+                   Padding(
+                       padding: EdgeInsets.fromLTRB(16, 5, 10, 5),
+                       child: Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                           Text(articles[index]['source']['name']),
+                           Text(DateFormat.yMMMd().format(DateTime.parse(articles[index]['publishedAt'])))
+                         ],
+                       )
+                   ),
+                   Padding(
+                     padding: EdgeInsets.fromLTRB(16, 5, 10, 10),
+                     child:  Text(articles[index]['title']),
+                   ),
+                 ],
+               ),
              )
            );
         },
