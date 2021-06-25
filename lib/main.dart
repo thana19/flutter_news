@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/pages/NewsPages.dart';
+import 'package:flutter_news/pages/WebViewPage.dart';
 
 void main() {
   runApp(MyApp());

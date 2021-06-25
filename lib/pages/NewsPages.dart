@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/pages/WebViewPage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
@@ -54,7 +55,18 @@ class _NewsPagesState extends State<NewsPages> {
            return Card (
              child: InkWell (
                onTap: () {
-                 print('tap');
+                 Navigator.push(
+                     context,
+                     MaterialPageRoute(builder: (context) => WebViewPage(),
+                      settings: RouteSettings(
+                        arguments: {
+                          'name' : articles[index]['source']['name'],
+                          'url' : articles[index]['url'],
+                        }
+                      )
+                     )
+                 );
+                 print('${articles[index]['url']}');
                },
                child: Column(
                  crossAxisAlignment: CrossAxisAlignment.start,
